@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="./dist/output.css">
+    <link rel="stylesheet" href="./dist/style.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.14/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
 </head>
-
-<body>
-
+<body class="bg-white" id="dash-body">
+    
     <!-- nav area start -->
 
     <nav class=" bg-[#7749f8] p-2 flex justify-between items-center">
         <h1 class="font-bold text-2xl text-[white] ml-[12%] max-[600px]:text-lg ">Personal Blogging App</h1>
-        <p class="flex mr-[12%] text-[white] ">Imzamam Malik &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="font-semibold ">logout</button></p> 
+        <div class="flex  mr-[12%] items-center">
+        <p class="text-[white] mr-5"><button>Inzamam Malik </button><br>
+            <div class="dropdown dropdown-end">
+           <div tabindex="0"  class=" m-1 "><img class="rounded-full cursor-pointer" src="./src/img/profilejpg.jpg" alt="img" height="50px" width="50px"></div>
+              <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li><a>Profile</a></li>
+                <li><a>Logout</a></li>
+              </ul>
+            </div></p>
+        </div>
     </nav>
 
     <!-- nav area end -->
@@ -33,23 +39,78 @@
     <!-- head area end -->
 
     <!-- form area start -->
-    <div class="flex justify-center">
-    <div class="flex  ml-[12%] mr-[20%] w-[80%] dash-div p-[4%] mt-[3%] rounded-md ">
-        <form class="flex flex-wrap justify-center">
-            <input type="text" placeholder="First Name" class="border-[#adb5bd] input input-bordered input-accent w-[100%] max-w-xs" /><br><br><br>
-            <input type="text" placeholder="Last Name" class="border-[#adb5bd] input input-bordered input-accent w-full max-w-xs" /><br><br><br>
-            <button type="submit" class="p-2 w-28 rounded-md bg-[#7749f8] text-[white]" >Signup</button>
+    <div class="flex justify-center ">
+    <div class="flex justify-center bg-white w-[70%] mr-[10%] form-div p-[3%]  mt-[2%] rounded-md max-[1400px]:w-[40%] max-[800px]:w-[50%] max-[600px]:w-[70%] max-[1000px]:w-[50%]">
+        <form class=" w-[100%]">
+            <input type="text" placeholder="Email" class="border-[#adb5bd] input input-bordered input-accent  w-[100%] max-w-[100%]" /><br><br>
+            <textarea placeholder="What is in your mind" class="textarea textarea-bordered textarea-lg w-[100%] max-w-[100%]" ></textarea><br><br>
+            <button class="btn btn-primary text-white">Publish Blog</button>
         </form>
     </div>
-    </div> 
-
-
+    </div>
 
 
     <!-- form area end -->
 
 
 
-</body>
+    <!-- blog area start -->
+    <div class="p-7 max-[600px]:p-4 bg-[#f8f9fa]">
+        <h2 class="text-3xl font-bold text-[#343a40] mt-8 ml-[10%] max-[600px]:text-3xl">My Blogs</h2>
+    </div>
 
+
+    <div class="flex justify-center ">
+        <div class=" bg-white w-[70%] mr-[10%] form-border pb-4 pt-5 pl-5 pr-5 mb-5  max-[1400px]:w-[40%] max-[800px]:w-[50%] max-[600px]:w-[70%] max-[1000px]:w-[50%]">
+
+            <div class="flex items-center mb-5">
+                <img src="./src/img/profilejpg.jpg" height="80px" width="80px" class="rounded-xl mr-5 cursor-pointer" alt="">
+                <div class="">
+                    <p class="text-black text-2xl font-semibold mb-2">An Action Button Could Be Coming to the iPhone 15</p>
+                    <p class="font-bold text-[#343a40a9]">Inzamam Malik - August 16th, 2023</p>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <p class="text-lg text-[#343a40a9] font-[500]">Apple could be putting an Action button on your next iPhone. According to a July report from MacRumors, code in the fourth iOS 17 developer beta hints at functionality for an Action button on the next-gen iPhone 15 Pro and Pro Max models. <br>
+                    Apple introduced the Action button on the Apple Watch Ultra. It's a physical button on the side of the Apple Watch Ultra that allows you to run a preselected function or program when you press it without unlocking your device or navigating to an app. Some of the preselected functions include starting a stopwatch, beginning a workout and turning on your flashlight.</p>
+            </div>
+
+            <div class="text-[#7749f8] text-lg font-[500]">
+                <button>Delete</button>&nbsp;&nbsp;&nbsp;
+                <button>Edit</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="flex justify-center ">
+        <div class=" bg-white w-[70%] mr-[10%] form-border pb-4 pt-5 pl-5 pr-5 mb-5  max-[1400px]:w-[40%] max-[800px]:w-[50%] max-[600px]:w-[70%] max-[1000px]:w-[50%]">
+
+            <div class="flex items-center mb-5">
+                <img src="./src/img/profilejpg.jpg" height="80px" width="80px" class="rounded-xl mr-5 cursor-pointer" alt="">
+                <div class="">
+                    <p class="text-black text-2xl font-semibold mb-2">What Is the Event Loop and How Does It Improve App Performance?</p>
+                    <p class="font-bold text-[#343a40a9]">Inzamam Malik - August 16th, 2023</p>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <p class="text-lg text-[#343a40a9] font-[500]">JavaScript is a single-threaded language, built to handle tasks one at a time. However, the event loop lets JavaScript handle events and callbacks asynchronously by emulating simultaneous programming systems. This assures the performance of your JavaScript applications. <br> JavaScript is a single-threaded language, built to handle tasks one at a time. However, the event loop lets JavaScript handle events and callbacks asynchronously by emulating simultaneous programming systems. This assures the performance of your JavaScript applications. <br> JavaScript is a single-threaded language, built to handle tasks one at a time. However, the event loop lets JavaScript handle events and callbacks asynchronously by emulating simultaneous programming systems. This assures the performance of your JavaScript applications. <br> JavaScript is a single-threaded language, built to handle tasks one at a time. However, the event loop lets JavaScript handle events and callbacks asynchronously by emulating simultaneous programming systems. This assures the performance of your JavaScript applications.</p>
+            </div>
+
+            <div class="text-[#7749f8] text-lg font-[500]">
+                <button>Delete</button>&nbsp;&nbsp;&nbsp;
+                <button>Edit</button>
+            </div>
+
+        </div>
+    </div>
+    
+
+    <!-- blog area end -->
+
+   
+    
+</body>
 </html>
