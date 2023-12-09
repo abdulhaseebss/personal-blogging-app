@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./dist/output.css">
     <link rel="stylesheet" href="./dist/style.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.14/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="E:\Haseeb\mini hackathon\src">
 </head>
 <body class="bg-[#f8f9fa]" id="body">
     
@@ -15,7 +14,20 @@
 
     <nav class=" bg-[#7749f8] p-2 flex justify-between items-center">
         <h1 class="font-bold text-2xl text-[white] ml-[12%] max-[600px]:text-lg ">Personal Blogging App</h1>
-        <p class="flex items-center mr-[12%] text-[white]">Inzamam Malik &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="text-[white] font-semibold ">Logout</button></p>
+        <p class="flex items-center mr-[12%] text-[white]">  
+
+                <div id="profileDiv" class="flex items-center"><p class="text-[white]  mr-5 " >
+                    <div class="dropdown dropdown-end">
+                   <div tabindex="0"  class=" m-1  "><span class="text-white cursor-pointer" id="username"></span></div>
+                      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                          <li><a id="dashboard">Dashboard</a></li>
+                        <li><a id="allBlogs">All Blogs</a></li>
+                      </ul>
+                    </div></p>
+                    <button class="text-[white] font-semibold ml-3" id="logout">Logout</button>
+                </div>
+        
+    </p>
     </nav>
 
     <!-- nav area end -->
@@ -33,8 +45,8 @@
     <!-- form area start -->
     <div class="flex justify-center ">
     <div class=" bg-white w-[70%] mr-[10%] form-border p-[2%]  mt-5 rounded-md max-[1400px]:w-[40%] max-[800px]:w-[50%] max-[600px]:w-[70%] max-[1000px]:w-[50%]">
-        <img src="./src/img/profilejpg.jpg " height="300px" width="300px" class="rounded-[30px] profile-img" alt="img">
-        <p class="text-black text-3xl font-semibold mt-9 flex">Inzamam Malik <img src="./src/img/pen-fill.svg" class="ml-5 cursor-pointer" height="18px" width="18px" alt="img"></p>
+        <img id="profileImage" src="" class="rounded-[30px] profile-img" alt="img">
+        <p class="text-black text-3xl font-semibold mt-9 flex"><span id="username1"> </span> <img src="./src/img/pen-fill.svg"  class="ml-5 cursor-pointer" height="18px" width="18px" alt="img"></p>
         <p class="text-black text-3xl font-semibold mt-4 flex">Password</p>
         <form >
             <input type="text" placeholder="Old password" class="input input-bordered w-full max-w-xs mt-4" /><br>
@@ -51,5 +63,6 @@
 
    
     
+    <script type="module" src="script/profile.js"></script>
 </body>
 </html>
