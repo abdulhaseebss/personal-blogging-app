@@ -16,7 +16,11 @@ const pen = document.querySelector('#pen');
 const updateForm = document.querySelector('#updateForm');
 const newPassword = document.querySelector('#newPassword');
 const repeatPassword = document.querySelector('#repeatPassword');
+const personalBlog = document.querySelector('#personalBlog')
 
+personalBlog.addEventListener('click' , ()=>{
+    window.location = "index.html"
+})
 
 allBlogs.addEventListener('click' , ()=>{
     window.location = "index.html"

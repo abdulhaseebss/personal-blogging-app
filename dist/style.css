@@ -41,3 +41,32 @@
     width: 80px;
     object-fit: cover;
 }
+.main-pera{
+    display: flex;
+    flex-wrap: wrap;
+}
+.seeAllImg{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-right: 50px;
+    border-radius: 15px;
+}
+.mainBlog{
+    width: 50rem;
+    margin-left: 15%;
+}
+
+
+
+
+@media (max-width: 1200px) {
+    .mainBlog{
+        width: 40rem;
+    }
+}
+@media (max-width: 900px) {
+    .mainBlog{
+        width: 30rem;
+    }
+}

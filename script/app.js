@@ -1,6 +1,6 @@
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import { auth, db } from "./config.js";
-import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+import { collection, getDocs, query, where,orderBy } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 
 // profileDiv.className = "hidden"
@@ -36,7 +36,7 @@ onAuthStateChanged(auth, async(user) => {
         uid = user.uid;
         const q = query(collection(db, "user"), where("uid", "==", uid));
         const querySnapshot = await getDocs(q);
-        console.log(querySnapshot);
+        // console.log(querySnapshot);
         querySnapshot.forEach((doc) => {
             console.log(doc.data());
             let fullName = `${doc.data().firstName} ${ doc.data().lastName}`
@@ -89,51 +89,87 @@ const allArry = [];
 
 
 
-const postsQuerySnapshot = await getDocs(collection(db, "posts"), where('uid', '==', uid));
+const postsQuerySnapshot = await getDocs(collection(db, "posts"),orderBy("time", "desc"), where('uid', '==', uid));
 postsQuerySnapshot.forEach((doc) => {
     allArry.push({ ...doc.data(), docId: doc.id });
 });
-// console.log(userData);
+console.log(allArry);
 
 allArry.map(async (item) => {
     // console.log(item);
-    const time = item.time.seconds
-    const mydate = new Date(time * 1000)
-    const stringdate = mydate.toLocaleString()
-    const parts = stringdate.split('/')
-    const month = parseInt(parts[0], 10);
-    const day = parseInt(parts[1], 10);
-    const year = parseInt(parts[2], 10);
-    // Create a Date object
-    const myDate = new Date(year, month - 1, day);
-    // Format the date as "Dec 2nd, 2023"
-    const options = { month: 'short', day: 'numeric', year: 'numeric' };
-    const formattedDate = myDate.toLocaleDateString('en-US', options);
-   console.log(item);
+    // const time = item.time.seconds
+    // const mydate = new Date(time * 1000)
+    // const stringdate = mydate.toLocaleString()
+    // const parts = stringdate.split('/')
+    // const month = parseInt(parts[0], 10);
+    // const day = parseInt(parts[1], 10);
+    // const year = parseInt(parts[2], 10);
+    // // Create a Date object
+    // const myDate = new Date(year, month - 1, day);
+    // // Format the date as "Dec 2nd, 2023"
+    // const options = { month: 'short', day: 'numeric', year: 'numeric' };
+    // const formattedDate = myDate.toLocaleDateString('en-US', options);
+//    console.log(item);
     allBlogsDiv.innerHTML += `
     
     <div class="flex justify-center ">
-        <div class=" bg-white w-[70%] mr-[10%] form-border pb-4 pt-5 pl-5 pr-5 mb-5  max-[1400px]:w-[40%] max-[800px]:w-[50%] max-[600px]:w-[70%] max-[1000px]:w-[50%]">
+        <div class=" bg-white w-[70%] mr-[10%] form-border pb-4 pt-5 pl-5 pr-5 mb-5 ">
 
             <div class="flex items-center mb-5">
                 <img src="${item.userimg}" class="rounded-xl mr-5 cursor-pointer blog-img" alt="">
                 <div class="">
                     <p class="text-black text-2xl font-semibold mb-2">${item.title}</p>
-                    <p class="font-bold text-[#343a40a9]">${item.name} - ${formattedDate}</p>
+                    <p class="font-bold text-[#343a40a9]">${item.name} - ${formattedDate(item.postDate)}</p>
                 </div>
             </div>
 
             <div class="mb-5">
-                <p class="text-lg text-[#343a40a9] font-[500]">${item.description}</p>
+                <p class="text-lg text-[#343a40a9] font-[500] ">${item.description}</p>
             </div>
 
             <div class="text-[#7749f8] text-lg font-[500]">
-                <button>see all from this user</button>
+                <button id= "seeAll">see all from this user</button>
             </div>
 
         </div>
     </div> 
     `
+
+    const seeAll = document.querySelectorAll("#seeAll");
+
+    seeAll.forEach((item, index) => {
+      item.addEventListener("click", () => {
+        console.log("btn clicked at index", index);
+        let detailsArr = [];
+        const obj = {
+          uid: allArry[index].uid,
+        //   firstName: allArry[index].firstName,
+        //   lastName: allArry[index].lastName,
+        //   email: allArry[index].email,
+        //   profileUrl: allArry[index].profileUrl,
+        };
+        // console.log(allArry[index].profileUrl);
+        detailsArr.push(obj);
+  
+        console.log(allArry[index]);
+        const seeAlluid = JSON.stringify(detailsArr);
+        localStorage.setItem("userDetails", seeAlluid);
+        window.location = "seeUser.html";
+      });
+    });
 })
+
+
+function formattedDate(timestamp) {
+    const dateObject = timestamp.toDate();
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    return dateObject.toLocaleDateString("en-US", options);
+  }
 
 

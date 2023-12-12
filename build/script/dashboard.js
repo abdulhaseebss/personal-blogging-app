@@ -13,7 +13,11 @@ const blogform = document.querySelector('#todoForm');
 const card = document.querySelector('#blogcontainer');
 const title = document.querySelector('#title');
 const description = document.querySelector('#description');
+const personalBlog = document.querySelector('#personalBlog')
 
+personalBlog.addEventListener('click' , ()=>{
+    window.location = "index.html"
+})
 
 allBlogs.addEventListener('click' , ()=>{
     window.location = "index.html"
@@ -40,18 +44,47 @@ querySnapshot.forEach((doc) => {
 
 let mainData;
 let fullName;
+let userEmail;
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
          uid = user.uid;
+         userEmail = user
+        //  console.log(user.email);
         const q = query(collection(db, "user"), where("uid", "==", uid));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            console.log(doc.data());
+            // console.log(doc.data());
             fullName = `${doc.data().firstName} ${doc.data().lastName}`
             username.innerHTML = fullName
             mainData = doc.data()
             profileImage.src = doc.data().profileUrl
+        });
+        blogform.addEventListener('submit', async (event) => {
+            event.preventDefault();
+        
+        
+            try {
+                const postObj = {
+                    title: title.value,
+                    description: description.value,
+                    uid: auth.currentUser.uid,
+                    postDate: Timestamp.fromDate(new Date()),
+                    userimg: mainData.profileUrl,
+                    name: fullName,
+                    time: Timestamp.fromDate(new Date()),
+                    email: user.email
+                }
+                const docRef = await addDoc(collection(db, "posts"), postObj);
+                console.log("Document written with ID: ", docRef.id);
+                postObj.docId = docRef.id;
+                arr = [postObj, ...arr];
+                console.log(arr);
+                // console.log(user.email);
+                renderPost();
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
         });
         getDataFromFirestore(uid)
     } else {
@@ -115,7 +148,10 @@ function renderPost() {
 
         </div>
     </div>`
-    console.log(item);
+    // console.log(item);
+
+    title.value = ""
+    description.value = ""
     })
 
     const del = document.querySelectorAll('#delete');
@@ -123,7 +159,7 @@ function renderPost() {
 
     del.forEach((btn, index) => {
         btn.addEventListener('click', async () => {
-            console.log('delete called', arr[index]);
+            // console.log('delete called', arr[index]);
             await deleteDoc(doc(db, "posts", arr[index].docId))
                 .then(() => {
                     console.log('post deleted');
@@ -140,7 +176,7 @@ function renderPost() {
             await updateDoc(doc(db, "posts", arr[index].docId), {
                 title: updatedTitle,
                 description: updatedDes,
-                time: Timestamp.fromDate(new Date())
+                time: Timestamp.fromDate(new Date()),
             });
             arr[index].title = updatedTitle;
             arr[index].description = updatedDes;
@@ -159,38 +195,16 @@ async function getDataFromFirestore(uid) {
     // console.log(uid);
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-        console.log(doc.data());
+        // console.log(doc.data());
         arr.push({ ...doc.data(), docId: doc.id });
     });
-    console.log(arr);
+    // console.log(arr);
     renderPost();
 }
 
 
 
 
-blogform.addEventListener('submit', async (event) => {
-    event.preventDefault();
 
-
-    try {
-        const postObj = {
-            title: title.value,
-            description: description.value,
-            uid: auth.currentUser.uid,
-            postDate: Timestamp.fromDate(new Date()),
-            userimg: mainData.profileUrl,
-            name: fullName,
-            time: Timestamp.fromDate(new Date()),
-        }
-        const docRef = await addDoc(collection(db, "posts"), postObj);
-        console.log("Document written with ID: ", docRef.id);
-        postObj.docId = docRef.id;
-        arr = [postObj, ...arr];
-        console.log(arr);
-        renderPost();
-    } catch (e) {
-        console.error("Error adding document: ", e);
-    }
-});
 // console.log(profileUrl);
+console.log(userEmail);
