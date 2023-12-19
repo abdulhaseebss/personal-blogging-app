@@ -89,7 +89,7 @@ const allArry = [];
 
 
 
-const postsQuerySnapshot = await getDocs(collection(db, "posts"),orderBy("time", "desc"), where('uid', '==', uid));
+const postsQuerySnapshot = await getDocs(collection(db, "posts"),orderBy("postDate", "desc"), where('uid', '==', uid));
 postsQuerySnapshot.forEach((doc) => {
     allArry.push({ ...doc.data(), docId: doc.id });
 });
