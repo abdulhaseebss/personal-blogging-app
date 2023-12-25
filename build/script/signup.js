@@ -11,9 +11,12 @@ const img = document.querySelector('#img');
 const password = document.querySelector('#password');
 const repeatPassword = document.querySelector('#repeatPassword');
 const modalMessage = document.querySelector('#modal-message');
+const personal = document.querySelector('#personal');
 
 
-
+personal.addEventListener('click' , ()=>{
+    window.location = "index.html"
+})
 
 // onAuthStateChanged(auth, (user) => {
 //     if (user) {
@@ -48,7 +51,8 @@ form.addEventListener('submit', (event) => {
                         lastName: lastName.value,
                         email: email.value,
                         uid: user.uid,
-                        profileUrl: url
+                        profileUrl: url,
+                        password:password.value
                     }).then((res) => {
                         console.log(res);
                         window.location = 'login.html'

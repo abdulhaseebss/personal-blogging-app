@@ -132,13 +132,13 @@ function renderPost() {
             <div class="flex items-center mb-5">
                 <img src="${item.userimg}" class="rounded-xl mr-5 cursor-pointer blog-img" alt="">
                 <div class="">
-                    <p class="text-black text-2xl font-semibold mb-2">${item.title}</p>
+                    <p class="text-black text-2xl font-semibold mb-2 breakWords">${item.title}</p>
                     <p class="font-bold text-[#343a40a9]">${item.name} - ${formattedDate}</p>
                 </div>
             </div>
 
             <div class="mb-5">
-                <p class="text-lg text-[#343a40a9] font-[500]">${item.description}</p>
+                <p class="text-lg text-[#343a40a9] font-[500] breakWords">${item.description}</p>
             </div>
 
             <div class="text-[#7749f8] text-lg font-[500]">
@@ -207,4 +207,4 @@ async function getDataFromFirestore(uid) {
 
 
 // console.log(profileUrl);
-console.log(userEmail);
+// console.log(userEmail);

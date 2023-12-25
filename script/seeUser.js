@@ -123,13 +123,13 @@ async function render() {
                     <div class="flex items-center mb-5">
                         <img src="${item.userimg}" height="80px" width="80px" class="rounded-xl mr-5 cursor-pointer blog-img" alt="">
                         <div class="">
-                            <p class="text-black text-2xl font-semibold mb-2">${item.title}</p>
+                            <p class="text-black text-2xl font-semibold mb-2 breakWords">${item.title}</p>
                             <p class="font-bold text-[#343a40a9]">${item.name} - ${formattedDate(item.postDate)}</p>
                         </div>
                     </div>
         
                     <div class="mb-5">
-                        <p class="text-lg text-[#343a40a9] font-[500] main-pera">${item.description}</p>
+                        <p class="text-lg text-[#343a40a9] font-[500] main-pera breakWords">${item.description}</p>
                     </div>
         
                 </div>

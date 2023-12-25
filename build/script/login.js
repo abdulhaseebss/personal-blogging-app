@@ -5,6 +5,12 @@ const modalMessage = document.querySelector('#modal-message');
 const form = document.querySelector('#form');
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
+const personal = document.querySelector('#personal');
+
+
+personal.addEventListener('click' , ()=>{
+    window.location = "index.html"
+})
 
 onAuthStateChanged(auth, (user) => {
     if (user) {

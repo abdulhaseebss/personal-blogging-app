@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.6 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.0 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -32,9 +32,11 @@
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
 6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
 */
 
-html {
+html,
+:host {
   line-height: 1.5;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -44,12 +46,14 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
   font-variation-settings: normal;
   /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
 }
 
 /*
@@ -584,6 +588,10 @@ video {
   margin-right: 12%;
 }
 
+.mr-\[15\%\] {
+  margin-right: 15%;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -602,34 +610,6 @@ video {
 
 .mt-\[2\%\] {
   margin-top: 2%;
-}
-
-.mr-11 {
-  margin-right: 2.75rem;
-}
-
-.mr-\[350px\] {
-  margin-right: 350px;
-}
-
-.mr-3 {
-  margin-right: 0.75rem;
-}
-
-.mr-\[200px\] {
-  margin-right: 200px;
-}
-
-.mr-\[300px\] {
-  margin-right: 300px;
-}
-
-.mr-\[15\%\] {
-  margin-right: 15%;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
 }
 
 .flex {
@@ -774,10 +754,6 @@ video {
   padding-top: 1.25rem;
 }
 
-.text-right {
-  text-align: right;
-}
-
 .text-end {
   text-align: end;
 }
@@ -807,11 +783,6 @@ video {
   line-height: 1.75rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-
 .font-\[500\] {
   font-weight: 500;
 }
@@ -822,14 +793,6 @@ video {
 
 .font-semibold {
   font-weight: 600;
-}
-
-.font-extrabold {
-  font-weight: 800;
-}
-
-.font-black {
-  font-weight: 900;
 }
 
 .text-\[\#343a40\] {
