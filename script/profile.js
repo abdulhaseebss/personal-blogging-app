@@ -164,6 +164,7 @@ updateForm.addEventListener('submit', (e) => {
 //     username1.innerHTML =  user.displayName;
 //   }
 
+
 const allArry = [];
 
 
@@ -171,9 +172,29 @@ const postsQuerySnapshot = await getDocs(collection(db, "posts"), orderBy("postD
 postsQuerySnapshot.forEach((doc) => {
     allArry.push({ ...doc.data(), docId: doc.id });
 });
-
 console.log(allArry);
-console.log(arr);
+
+// console.log(allArry);
+// console.log(arr);
+
+let newArr = []
+
+
+async function getDataFromFirestore(uid) {
+    newArr.length = 0;
+      const q = await query(collection(db, "posts"), orderBy("time", "desc"), where("uid", "==", uid));
+    // const userUid = await auth.currentUser
+    // console.log(uid);
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        // console.log(doc.data());
+        newArr.push({ ...doc.data(), docId: doc.id });
+    });
+    console.log(newArr);
+    // renderPost();
+}
+
+getDataFromFirestore(uid)
 
 
 userForm.addEventListener('submit', (e) => {
@@ -192,7 +213,7 @@ userForm.addEventListener('submit', (e) => {
 
     const fullName = `${firstInput.value} ${lastInput.value}`
     console.log(fullName);
-    allArry.forEach(async (item) => {
+    newArr.forEach(async (item) => {
         console.log('update called', item);
         await updateDoc(doc(db, "posts", item.docId), {
             name: fullName
@@ -200,9 +221,6 @@ userForm.addEventListener('submit', (e) => {
     })
     updateUserName()
 })
-
-
-
 
 
 
